@@ -1,0 +1,23 @@
+.production table, .production th, .production td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+.production td,
+.production th {
+    font-weight: 600;
+    padding: 15px;
+    font-size: 20px;
+}
+
+.production td {
+    text-align: center;
+}
+
+.small-box {
+    font-size: 20px;
+    height: 30px;
+    margin-left: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
