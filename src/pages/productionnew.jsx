@@ -23,6 +23,7 @@ function createData(StartTime, DownTime, Duration, Reason,) {
 
 function Downtimelog() {
   return (
+    <form  action = "http://localhost:5000/newproduction" method = "POST">
     <div style={{marginTop:'50px'}}>
       <div style={{fontSize:'40px', fontWeight:600, marginLeft:'-10px'}}>Production</div>
       <Grid container spacing={1}>
@@ -44,7 +45,8 @@ function Downtimelog() {
         </Grid>
         <Grid container sm={4}>
           <Grid item sx={{ marginTop: '10px' }}>
-          <Button style={{ width: 350, height: 100, border: '2px solid black',borderRadius:'20px'}}>
+
+          <Button style={{ width: 350, height: 100, border: '2px solid black',borderRadius:'20px'}} value="Good" type="text" name="start_production">
             {/* <Box sx={{ width: 350, height: 100, border: '2px solid black', borderRadius: '10px' }}> */}
               <h1>Start Production</h1>
             {/* </Box> */}
@@ -55,20 +57,20 @@ function Downtimelog() {
                     <Grid container sm={8}>
                         <Grid container direction={'column'}>
                             <label style={{ fontSize: '1.5rem' }}>Part Name</label>
-                            <TextField id="standard-basic" label="ABC" variant="standard" style={{ width: '95%' }} />
+                            <TextField id="standard-basic" label="Ex. ABCD" variant="standard" style={{ width: '95%' }}  name="part_name" />
                             <label style={{ fontSize: '1.5rem', marginTop:'25px'}}>Part Number</label>
-                            <TextField id="standard-basic" label="12345" variant="standard" style={{ width: '95%' }} />
+                            <TextField id="standard-basic"  label="Ex. 1234" variant="standard" style={{ width: '95%' }}  name="part_number" />
                             <label style={{ fontSize: '1.5rem', marginTop:'25px' }}>Loading Unloading Time (mins)</label>
-                            <TextField id="standard-basic" label="15" variant="standard" style={{ width: '95%' }} />
+                            <TextField id="standard-basic"  label="Ex. 60" variant="standard" style={{ width: '95%' }}  name="lutime"/>
                             <label style={{ fontSize: '1.5rem', marginTop:'25px' }}>Target Count</label>
-                            <TextField id="standard-basic" label="100" variant="standard" style={{ width: '95%' }} />
+                            <TextField id="standard-basic"  label="Ex. 450" variant="standard" style={{ width: '95%' }} name="target_count" />
                             <label style={{ fontSize: '1.5rem', marginTop:'25px' }}>Ideal Cycle Time(mins)</label>
-                            <TextField id="standard-basic" label="450" variant="standard" style={{ width: '95%' }} />
+                            <TextField id="standard-basic"  label="Ex. 300" variant="standard" style={{ width: '95%' }}  name="i_cycletime"/>
                         </Grid>
                     </Grid>
                     <Grid container direction={'column'} mt={7} sm={4}>
                     <label style={{ fontSize: '1.5rem' }}>Planned Shutdown Time(mins)</label>
-                            <TextField id="standard-basic" label="60" variant="standard" style={{ width: '95%' }} />
+                            <TextField id="standard-basic"  label="Ex. 45" variant="standard" style={{ width: '95%' }} name="p_shutdowntime" />
                        
                     </Grid>
                 </Grid>
@@ -79,10 +81,11 @@ function Downtimelog() {
       </Grid>
       <div style={{display:'flex',float:'right'}}>
           <Button variant="outlined" style={{width:"150px",height:"70px",marginRight:'30px'}}>Back</Button>
-          <Button variant="contained" style={{width:"150px",height:"70px"}}>Submit</Button>
+          <Button variant="contained" style={{width:"150px",height:"70px"}} type="Submit">Submit</Button>
       </div>
 
     </div>
+  </form>
   )
 }
 export default Downtimelog;

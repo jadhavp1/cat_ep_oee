@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Settings from '../component/Settings';
 import Popup from '../component/Popup'
+
 class Setting extends Component {
     
 

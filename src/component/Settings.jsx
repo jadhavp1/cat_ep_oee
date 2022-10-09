@@ -13,6 +13,7 @@ import OutlinedInput from '@mui/material/OutlinedInput';
 class Settings extends Component {
     render() {
         return (
+            <form  action = "http://localhost:5000/setting" method = "POST">
             <div>
                 <Grid container spacing={1}>
                     <Grid container>
@@ -41,19 +42,19 @@ class Settings extends Component {
                     <Grid container sm={8}>
                         <Grid container direction={'column'}>
                             <label style={{ fontSize: '25px', }}>Plant Name</label>
-                            <TextField id="standard-basic" label="Standard" variant="standard" style={{ width: '95%' }} />
+                            <TextField id="standard-basic" label="Standard" variant="standard" style={{ width: '95%' }} name="plant_name"/>
                             <label style={{ fontSize: '25px', marginTop: '30px' }}>Company</label>
-                            <TextField id="standard-basic" label="Standard" variant="standard" style={{ width: '95%' }} />
+                            <TextField id="standard-basic" label="Standard" variant="standard" style={{ width: '95%' }}  name="company"/>
                             <label style={{ fontSize: '25px', marginTop: '30px' }}>Location</label>
-                            <TextField id="standard-basic" label="Standard" variant="standard" style={{ width: '95%' }} />
+                            <TextField id="standard-basic" label="Standard" variant="standard" style={{ width: '95%' }} name="location"/>
                         </Grid>
                         <Grid container>
                             <FormControl variant="filled" sx={{ mt: 5, minWidth: 300 }}>
                                 <InputLabel id="demo-simple-select-filled-label">Shift</InputLabel>
-                                <Select labelId="demo-simple-select-filled-label" id="demo-simple-select-filled">
-                                    <MenuItem value={10}><label style={{ backgroundColor: 'grey', border: '1px solid black', height: '35px', width: '80px', fontSize: '20px' }}>Shift1</label>Shift 1 (6:00 AM to 3:00 PM)</MenuItem>
-                                    <MenuItem value={20}><label style={{ backgroundColor: 'grey', border: '1px solid black', height: '35px', width: '80px', fontSize: '20px' }}>Shift2</label>Shift 2 (6:00 AM to 3:00 PM)</MenuItem>
-                                    <MenuItem value={30}><label style={{ backgroundColor: 'grey', border: '1px solid black', height: '35px', width: '80px', fontSize: '20px' }}>Shift3</label>Shift 2 (6:00 AM to 3:00 PM)</MenuItem>
+                                <Select labelId="demo-simple-select-filled-label" id="demo-simple-select-filled" name="shift">
+                                    <MenuItem value={'Shift 1 (6:00 AM to 3:00 PM)'}><label style={{ backgroundColor: 'grey', border: '1px solid black', height: '35px', width: '80px', fontSize: '20px' }}>Shift1</label>Shift 1 (6:00 AM to 3:00 PM)</MenuItem>
+                                    <MenuItem value={'Shift 2 (6:00 AM to 3:00 PM)'}><label style={{ backgroundColor: 'grey', border: '1px solid black', height: '35px', width: '80px', fontSize: '20px' }}>Shift2</label>Shift 2 (6:00 AM to 3:00 PM)</MenuItem>
+                                    <MenuItem value={'Shift 3 (6:00 AM to 3:00 PM)'}><label style={{ backgroundColor: 'grey', border: '1px solid black', height: '35px', width: '80px', fontSize: '20px' }}>Shift3</label>Shift 2 (6:00 AM to 3:00 PM)</MenuItem>
                                 </Select>
                             </FormControl>
                         </Grid>
@@ -62,23 +63,23 @@ class Settings extends Component {
                         <label style={{ fontSize: '25px' }}>Downtime Reason:</label>
                         <FormControl sx={{ width: '300px' }}>
                             <InputLabel disabled id="demo-multiple-name-label" >Down</InputLabel>
-                            <Select labelId="demo-simple-select-filled-label" id="demo-simple-select-filled" input={<OutlinedInput label="Name" />}>
-                                <MenuItem value={10}>national holiday</MenuItem>
-                                <MenuItem value={20}>bank holiday</MenuItem>
-                                <MenuItem value={30}>lunch</MenuItem>
+                            <Select labelId="demo-simple-select-filled-label" id="demo-simple-select-filled" input={<OutlinedInput label="Name" />} name="down_reason">
+                                <MenuItem value={'national holiday'}>national holiday</MenuItem>
+                                <MenuItem value={'bank holiday'}>bank holiday</MenuItem>
+                                <MenuItem value={'lunch'}>lunch</MenuItem>
                             </Select>
                         </FormControl>
                         <label style={{ fontSize: '25px', marginTop: '30px' }}>Weekly Off:</label>
                         <FormControl sx={{ width: '300px' }}>
                             <InputLabel disabled id="demo-multiple-name-label" >0</InputLabel>
-                            <Select labelId="demo-simple-select-filled-label" id="demo-simple-select-filled" input={<OutlinedInput label="Name" />}>
+                            <Select labelId="demo-simple-select-filled-label" id="demo-simple-select-filled" input={<OutlinedInput label="Name" />}name="weekly_off">
                                 <MenuItem disabled value="">
                                     <em>Placeholder</em>
                                 </MenuItem>
                                 <MenuItem>0</MenuItem>
-                                <MenuItem value={10}>1</MenuItem>
-                                <MenuItem value={20}>2</MenuItem>
-                                <MenuItem value={30}>3</MenuItem>
+                                <MenuItem value={1}>1</MenuItem>
+                                <MenuItem value={2}>2</MenuItem>
+                                <MenuItem value={3}>3</MenuItem>
                             </Select>
                         </FormControl>
                     </Grid>
@@ -89,11 +90,12 @@ class Settings extends Component {
                     </Grid>
                     <Grid item>
                         <Button variant="outlined" style={{ marginRight: '10px', width: "150px", height: "70px" }}>Back</Button>
-                        <Button variant="contained" color={'primary'} style={{ marginRight: '10px', width: "150px", height: "70px" }}>Submit</Button>
+                        <Button variant="contained" color={'primary'} style={{ marginRight: '10px', width: "150px", height: "70px" }}  type="Submit">Submit</Button>
                     </Grid>
                 </Grid>
 
             </div >
+            </form>
         )
     }
 }

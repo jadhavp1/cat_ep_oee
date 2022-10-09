@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
-
 // MUI Component
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
@@ -9,17 +12,13 @@ import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import Button from '@mui/material/Button';
-
-
+import OutlinedInput from '@mui/material/OutlinedInput';
 // CSS
 import './page.css';
-
 class Reject extends Component {
     constructor(props) {
         super(props);
-
     }
-
     render() {
         return (
             <div style={{marginTop:'50px'}}>
@@ -42,28 +41,30 @@ class Reject extends Component {
                             </div> */}
                         </Grid>
                     </Grid>
-                    
+                    <form  action = "http://localhost:5000/reject" method = "POST">
                     <h1 style={{marginTop:'5%'}}>Reject Count : </h1>
-                    <Input style={{width:'500px'}} />
-
+                    <Input style={{width:'500px'}}  name="count"/>
                     <h1>Reason</h1>
-                    <FormGroup>
-                        <FormControlLabel control={<Checkbox />} label={<span style={{ fontSize: '25px' }}>{"Measurment issue"}</span>} />
-                        <FormControlLabel control={<Checkbox defaultChecked />} label={<span style={{ fontSize: '25px' }}>{"Search on Product"}</span>} />
-                        <FormControlLabel control={<Checkbox />} label={<span style={{ fontSize: '25px' }}>{"Dent on product"}</span>} />
-                        <FormControlLabel control={<Checkbox />} label={<span style={{ fontSize: '25px' }}>{"Quality issue"}</span>} />
-                        <FormControlLabel control={<Checkbox />} label={<span style={{ fontSize: '25px' }}>{"Other"}</span>} />
-                    </FormGroup>
-
+                    <Grid container>
+                    <FormControl sx={{ width: '400px' }}>
+                            <InputLabel disabled id="demo-multiple-name-label" >Down Time Reason</InputLabel>
+                            <Select labelId="demo-simple-select-filled-label" id="Rreason" input={<OutlinedInput label="Name" />} name="reason">
+                                <MenuItem value={'Measurment issue'}>Measurment issue</MenuItem>
+                                <MenuItem value={'Dent on product'}>Dent on product</MenuItem>
+                                <MenuItem value={'Search on Product'}> Search on Product </MenuItem>
+                                <MenuItem value={'Quality issue'}> Quality issue </MenuItem>
+                                <MenuItem value={'Other'}> Other </MenuItem>
+                            </Select>
+                        </FormControl>
+                        </Grid>
                     <div style={{display:'flex',float:'right'}}>
                         <Button variant="outlined" style={{width:"150px",height:"70px",marginRight:'30px'}}>Back</Button>
-                        <Button variant="contained" style={{width:"150px",height:"70px"}}>Submit</Button>
+                        <Button variant="contained" style={{width:"150px",height:"70px"}} type="Submit" value="Running"  name="rstart" >Submit</Button>
                     </div>
-
+                    </form>
                 </Box>    
             </div>
         );
     }
 }
-
 export default Reject;

@@ -1,4 +1,5 @@
-import * as React from 'react';
+//import * as React from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 
 import AppBar from '@mui/material/AppBar';
@@ -24,6 +25,7 @@ import Downtime from './pages/downtime';
 import Reject from './pages/reject';
 import Setting from './pages/setting';
 import Production1 from './pages/productionnew';
+import Login from './pages/userlogin';
 
 const drawerWidth = 240;
 
@@ -36,6 +38,33 @@ interface Props {
 }
 
 function App(props: Props) {
+  // usestate for setting a javascript
+	// object for storing and using data
+	const [data, setdata] = useState({
+    username:"",
+  });
+
+  
+	useEffect(() => {
+		// Using fetch to fetch the api from
+		// flask server it will be redirected to proxy
+		setInterval(() => {
+		fetch("http://localhost:3000/data").then((res) =>
+			res.json().then((data) => {
+				// Setting a data from api
+
+                    // code to refresh your component.
+					console.log("dataata",data)
+					setdata({
+                        username:data.User_Name,
+					});
+
+
+			})
+
+		);
+	},2000)
+	}, []);
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
@@ -47,13 +76,14 @@ function App(props: Props) {
     <div>
      {/* <Toolbar /> */}
      {/* <Divider /> */}
+
       <div style={{padding:"20%"}}>	
       	<AccountCircleIcon style= {{width:"128px",height:"128px"}}/>
-	<div style={{textAlign:"center"}}>abcd xyz</div>
+	<div style={{textAlign:"center"}}> Welcome {data.username}</div>
       </div>
 	<Button variant="outlined" style={{width:'100%', color:'#000', marginTop:'-25%', backgroundColor:'#fff'}}>Logout</Button>
       <List>
-        {[{title:'Production',path:'/production'},{title:'Downtime Log',path:'/downtime'},{title:'Reject',path:'/reject'},{title:'Setting',path:'/setting'}, {title:'Production new',path:'/production1'}].map((text, index) => (
+        {[{title:'Production',path:'/production'},{title:'Downtime Log',path:'/downtime'},{title:'Reject',path:'/reject'},{title:'Setting',path:'/setting'}, {title:'Production new',path:'/production1'},{title:'Login',path:'/userlogin'}].map((text, index) => (
           <ListItem button key={text.title} style={{textAlign:"center"}}>
 	    <Link to={text.path} style={{textDecoration:"none"}}>
             	<ListItemText primary={text.title} style={{color:"#fff"}} />
@@ -89,17 +119,23 @@ function App(props: Props) {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap component="div">
-            Responsive drawer
+            CAT OEE 
+           
           </Typography>
         </Toolbar>
       </AppBar>
+
+       
       <Box
         component="nav"
         sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 }}}
         aria-label="mailbox folders"
       >
+
+
         {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
         <Drawer
+        
           container={container}
           variant="temporary"
           open={mobileOpen}
@@ -113,6 +149,8 @@ function App(props: Props) {
           }}
         >
           {drawer}
+          
+          
         </Drawer>
         <Drawer
           variant="permanent"
@@ -124,17 +162,19 @@ function App(props: Props) {
         >
           {drawer}
         </Drawer>
+       
       </Box>
       <Box
         component="main"
         sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
       >
          <Routes>
-              <Route path="/production" element={<Production />} />
+        <Route path="/production" element={<Production />} />
 	      <Route path="/downtime" element={<Downtime />} />
 	      <Route path="/reject" element={<Reject />} />
 	      <Route path="/setting" element={<Setting />} />
         <Route path="/production1" element={<Production1 />} />
+        <Route path="/userlogin" element={<Login />} />
          </Routes>
       </Box>
      </Router>
