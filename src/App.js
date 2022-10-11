@@ -40,7 +40,7 @@ interface Props {
 function App(props: Props) {
   // usestate for setting a javascript
 	// object for storing and using data
-	const [data, setdata] = useState({
+	const [getuser, setdata] = useState({
     username:"",
   });
 
@@ -49,14 +49,14 @@ function App(props: Props) {
 		// Using fetch to fetch the api from
 		// flask server it will be redirected to proxy
 		setInterval(() => {
-		fetch("http://localhost:3000/data").then((res) =>
-			res.json().then((data) => {
+		fetch("http://localhost:3000/getuser").then((res) =>
+			res.json().then((getuser) => {
 				// Setting a data from api
 
                     // code to refresh your component.
-					console.log("dataata",data)
+					console.log("dataata",getuser)
 					setdata({
-                        username:data.User_Name,
+                        username:getuser.User_Name,
 					});
 
 
@@ -79,11 +79,15 @@ function App(props: Props) {
 
       <div style={{padding:"20%"}}>	
       	<AccountCircleIcon style= {{width:"128px",height:"128px"}}/>
-	<div style={{textAlign:"center"}}> Welcome {data.username}</div>
+	<div style={{textAlign:"center"}}> Welcome {getuser.username}</div>
       </div>
-	<Button variant="outlined" style={{width:'100%', color:'#000', marginTop:'-25%', backgroundColor:'#fff'}}>Logout</Button>
+    <div>
+      <form action = "http://localhost:5000/logout" > 
+	<Button variant="outlined" style={{width:'100%', color:'#000', marginTop:'-25%', backgroundColor:'#fff'}}  value="logout" name="logout" type="submit">Logout</Button>
+      </form>
+    </div> 
       <List>
-        {[{title:'Production',path:'/production'},{title:'Downtime Log',path:'/downtime'},{title:'Reject',path:'/reject'},{title:'Setting',path:'/setting'}, {title:'Production new',path:'/production1'},{title:'Login',path:'/userlogin'}].map((text, index) => (
+        {[{title:'OEE Dashboard',path:'/production'},{title:'Downtime Log',path:'/downtime'},{title:'Reject',path:'/reject'},{title:'Setting',path:'/setting'}, {title:'Production Job',path:'/production1'},{title:'Login',path:'/userlogin'}].map((text, index) => (
           <ListItem button key={text.title} style={{textAlign:"center"}}>
 	    <Link to={text.path} style={{textDecoration:"none"}}>
             	<ListItemText primary={text.title} style={{color:"#fff"}} />
@@ -118,8 +122,8 @@ function App(props: Props) {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap component="div">
-            CAT OEE 
+          <Typography variant="h2" noWrap component="div">
+             OEE Monitoring System 
            
           </Typography>
         </Toolbar>

@@ -44,7 +44,7 @@ function Production() {
 		// Using fetch to fetch the api from
 		// flask server it will be redirected to proxy
 		setInterval(() => {
-		fetch("http://localhost:3000/data").then((res) =>
+		fetch("http://localhost:3000/getmasterdata").then((res) =>
 			res.json().then((data) => {
 				// Setting a data from api
 
@@ -75,7 +75,7 @@ function Production() {
 			})
 
 		);
-	},2000)
+	},6000)
 	}, []);
         return (
             <div style={{marginTop:'50px'}} className="production">

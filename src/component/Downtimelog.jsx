@@ -73,17 +73,17 @@ function Downtimelog() {
                       <List>
                         <ListItem disablePadding>
                           <ListItemButton>
-                            <ListItemText primary="lunch" />
+                            <ListItemText primary="Stop to Load / Unload" />
                           </ListItemButton>
                         </ListItem>
                         <ListItem disablePadding>
                           <ListItemButton>
-                            <ListItemText primary="meeting" />
+                            <ListItemText primary="Stop for quality measurement / IPV" />
                           </ListItemButton>
                         </ListItem>
                         <ListItem disablePadding>
                           <ListItemButton>
-                            <ListItemText primary="fault" />
+                            <ListItemText primary="Machine out of order" />
                           </ListItemButton>
                         </ListItem>
                       </List>
