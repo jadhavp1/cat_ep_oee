@@ -109,19 +109,19 @@ function Production() {
 
             );
 
-     //       if (data.machineconnectivity > data.idealcyletime) {
-      //          handleOpen();
-      //      }
-       // }, 1000)
+            if (data.Exceedtime > data.idealcyletime) {
+                handleOpen();
+            }
+        }, 1000)
 
 
     }, []);
 
-   //  useEffect(() => {
-   //    if (data.machineconnectivity > data.idealcyletime)  {
-   //     handleOpen();
-   //    }
-  //   }, [data.machineconnectivity ])
+    // useEffect(() => {
+    //   if ((data.machineconnectivity > data.idealcyletime)  {
+    //     handleOpen();
+    //   }
+    // }, [data.machineconnectivity ])
 
 
     return (
@@ -172,7 +172,7 @@ function Production() {
                         </div>
                         <div style={{ display: 'flex', marginTop: '30px' }}>
                             <div style={{ fontSize: '20px' }}>Machine Connectivity :</div>
-                            <Paper className='small-box' style={{ backgroundColor: '#04951d', color: '#fff' }}>{data.machineconnectivity}</Paper>
+                            <Paper className='small-box' style={{ backgroundColor: '#04951d', color: '#fff' }}>{data.Exceedtime}</Paper>
                         </div>
                         <div style={{ display: 'flex', marginTop: '20px' }}>
                             <div style={{ fontSize: '20px' }}>Machine Status :</div>

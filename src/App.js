@@ -63,7 +63,7 @@ function App(props: Props) {
 			})
 
 		);
-	},2000)
+	},500)
 	}, []);
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);

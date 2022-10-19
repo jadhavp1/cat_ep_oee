@@ -1,4 +1,6 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react';
+//import React from 'react'
+
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import { DataGrid } from '@mui/x-data-grid';
@@ -7,7 +9,7 @@ import { DataGrid } from '@mui/x-data-grid';
 //   randomTraderName,
 //   randomUpdatedDate,
 // } from '@mui/x-data-grid-generator';
-import { useState } from 'react';
+//import { useState } from 'react';
 import Button from '@mui/material/Button';
 import Popover from '@mui/material/Popover';
 import List from '@mui/material/List';
@@ -19,6 +21,42 @@ import ListItemText from '@mui/material/ListItemText';
 
 
 function Downtimelog() {
+  const [data, setdata] = useState({
+
+    Downtime_Start: "",
+    Downtime_End: "",
+    Downtime_Duration: "",
+
+  });
+
+  // Using useEffect for single rendering
+  useEffect(() => {
+    // Using fetch to fetch the api from
+    // flask server it will be redirected to proxy
+    setInterval(() => {
+        fetch("http://localhost:3000/getmasterdata").then((res) =>
+            res.json().then((data) => {
+                // Setting a data from api
+
+                // code to refresh your component.
+                console.log("dataata", data)
+                setdata({
+
+                  Downtime_Start: data.Start_Time,
+                  Downtime_End: data.End_Time,
+                  Downtime_Duration: data.exceedtime,
+                  });
+
+
+                })
+
+            );
+
+            
+        }, 1000)
+
+
+    }, []);
 
 
 
@@ -95,9 +133,9 @@ function Downtimelog() {
             rows={[
               {
                 id: 1,
-                'Downtime Start time':'11-05-2020 14:56:05:00',
-                'Downtime end time':'11-05-2020 14:58:05:00',
-                'Duration' : '2mints'
+                'Downtime Start time':data.Downtime_Start,
+                'Downtime end time':data.Downtime_End,
+                'Duration' : data.Downtime_Duration
               },
               {
                 id: 2,
